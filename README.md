@@ -1,6 +1,61 @@
-# 智能冰箱管家微信小程序（MVP）
 
-这是一个原生微信小程序 + 微信云开发 CloudBase 项目。当前代码包含 Phase 1–3：基础库存、Household 共享、浪费报告，以及通过可替换云端 Provider 接入的图片识别、OCR、菜谱、食品安全问答和保存时间推荐。
+# AI-Powered Smart Fridge Mini Program
+### 智能冰箱管家 · 微信小程序
+
+A WeChat Mini Program for managing household food inventory, reducing food waste, and providing AI-assisted food recognition and recipe recommendations.
+
+基于微信原生小程序与腾讯云 CloudBase 开发的智能冰箱管理应用，旨在解决家庭多个冰箱的食材管理、食品过期提醒及食材利用问题。
+
+## ✨ Key Features
+
+- **Shared Fridge Management:** 支持多个冰箱管理、家庭成员共享及访问权限控制。
+- **Expiry Tracking:** 自动计算食材保质期，提供临期及过期提醒。
+- **AI Food Recognition:** 通过图片识别食材，并支持购物小票 OCR 解析。
+- **AI Recipe Recommendations:** 根据现有库存推荐菜谱，优先匹配本地菜谱，不足时调用 Qwen。
+- **Inventory Management:** 支持食材搜索、数量更新、食用记录及浪费统计。
+
+## 🛠 Tech Stack
+
+- **Frontend:** WeChat Mini Program, JavaScript, WXML, WXSS
+- **Backend:** Tencent CloudBase, Cloud Functions, Cloud Database
+- **AI:** Qwen API, Multimodal Vision, OCR
+- **Testing:** Node.js
+
+## 🏗 Architecture
+
+```text
+WeChat Mini Program
+        |
+        v
+Tencent CloudBase
+        |
+        +-- Cloud Database
+        |     +-- Food inventory
+        |     +-- Household permissions
+        |     +-- Recipe cache
+        |
+        +-- Cloud Functions
+              +-- Food recognition & OCR
+              +-- Recipe recommendations
+              +-- Expiry reminders
+              +-- Household management
+                      |
+                      v
+                  Qwen API
+```
+
+## 💡 Engineering Highlights
+
+- **Access Control:** 使用 OpenID 和服务端权限验证，实现家庭成员共享及个人数据隔离。
+- **Structured AI Output:** 对识别和 OCR 结果进行结构化解析与校验，用户确认后才导入库存。
+- **Recipe Optimisation:** 使用 175 道本地菜谱优先匹配，并通过库存指纹缓存减少不必要的模型调用。
+- **Food Safety:** 过滤已食用、已丢弃和过期食材，避免将其用于菜谱推荐。
+
+## 📸 Screenshots
+
+项目界面截图待补充。
+
+---
 
 ## 1. 项目结构
 
