@@ -52,8 +52,14 @@ Tencent CloudBase
 - **Food Safety:** 过滤已食用、已丢弃和过期食材，避免将其用于菜谱推荐。
 
 ## 📸 Screenshots
+| Dashboard | Fridge Inventory | Add Food |
+|:---:|:---:|:---:|
+| <img src="screenshots/dashboard.png" width="230"> | <img src="screenshots/fridge-inventory.png" width="230"> | <img src="screenshots/add-food.png" width="230"> |
 
-项目界面截图待补充。
+| AI Food Recognition | Receipt OCR | Recipe Recommendations |
+|:---:|:---:|:---:|
+| <img src="screenshots/ai-recognition.png" width="230"> | <img src="screenshots/OCR.png" width="230"> | <img src="screenshots/recipe-recommendations.png" width="230"> |
+
 
 ---
 
