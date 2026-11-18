@@ -1,0 +1,87 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">正在加载家庭信息…</view>
+
+  <view wx:elif="{{loadError}}" class="card load-error">
+    <view class="empty-title">家庭信息暂时无法加载</view>
+    <view class="description">请检查网络或确认 household 云函数已重新部署。</view>
+    <button class="secondary-btn retry-btn" bindtap="loadContext">重新加载</button>
+  </view>
+
+  <block wx:elif="{{!hasHousehold}}">
+    <view class="section">
+      <view class="section-title">我的家庭</view>
+      <view class="card empty-household">
+        <view class="empty-title">你还没有创建家庭</view>
+        <view class="description">创建家庭后，可以邀请家人一起管理冰箱和购物清单。</view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="card">
+        <view class="field">
+          <text class="label required">家庭名称</text>
+          <input class="input" maxlength="30" value="{{householdNameInput}}" bindinput="onHouseholdNameInput" placeholder="我的家庭" />
+        </view>
+        <button class="primary-btn" loading="{{creating}}" disabled="{{creating}}" bindtap="createHousehold">创建家庭</button>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="section">
+      <view class="section-title">我的家庭</view>
+      <view class="card">
+        <block wx:if="{{editingName}}">
+          <view class="field">
+            <text class="label required">家庭名称</text>
+            <input class="input" maxlength="30" value="{{editNameInput}}" bindinput="onEditNameInput" />
+          </view>
+          <view class="actions">
+            <button class="secondary-btn" disabled="{{savingName}}" bindtap="cancelEditingName">取消</button>
+            <button class="primary-btn" loading="{{savingName}}" disabled="{{savingName}}" bindtap="saveHouseholdName">保存</button>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="row household-heading">
+            <view>
+              <view class="name">{{household.name}}</view>
+              <view class="muted">我的角色：{{roleLabel}}</view>
+            </view>
+            <button wx:if="{{isOwner}}" class="small-btn secondary-btn" bindtap="startEditingName">修改名称</button>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">家庭成员 {{members.length}} 人</view>
+      <view wx:for="{{members}}" wx:key="_id" class="card member-card row">
+        <view class="member-info">
+          <view class="member-icon">{{item.role === 'owner' ? '👑' : '👤'}}</view>
+          <view>
+            <view class="name">{{item.displayName}}</view>
+            <view class="muted">{{item.roleLabel}}{{item.isSelf ? ' · 当前账号' : ''}}</view>
+          </view>
+        </view>
+        <button wx:if="{{item.canRemove}}" class="small-btn remove-btn" loading="{{actingMemberId === item._id}}" disabled="{{!!actingMemberId}}" data-id="{{item._id}}" bindtap="removeMember">移除成员</button>
+      </view>
+    </view>
+
+    <view class="section">
+      <button wx:if="{{isOwner}}" class="secondary-btn" loading="{{preparingInvite}}" disabled="{{preparingInvite}}" bindtap="prepareInvite">邀请家庭成员</button>
+      <view wx:else class="owner-tip">只有家庭创建者可以生成邀请。</view>
+      <view wx:if="{{invitePanelVisible && invite}}" class="card invite-panel">
+        <view class="name">邀请方式</view>
+        <view class="description">邀请在 {{inviteExpiresText}} 前有效，可供多位家人加入。</view>
+        <button class="primary-btn" open-type="share">转发给微信好友</button>
+        <button wx:if="{{!inviteQrFileId}}" class="secondary-btn invite-action" loading="{{generatingQr}}" disabled="{{generatingQr}}" bindtap="generateInviteQrCode">生成邀请二维码</button>
+        <view wx:else class="qr-wrap" bindtap="previewInviteQrCode">
+          <image class="invite-qr" src="{{inviteQrFileId}}" mode="aspectFit" />
+          <view class="muted">点击二维码可放大</view>
+        </view>
+        <button class="revoke-link" loading="{{revokingInvite}}" disabled="{{revokingInvite}}" bindtap="revokeInvite">撤销当前邀请</button>
+      </view>
+      <button wx:if="{{!isOwner}}" class="danger-btn leave-btn" loading="{{leaving}}" disabled="{{leaving}}" bindtap="leaveHousehold">退出家庭</button>
+      <view wx:else class="owner-tip">创建者暂时不能直接退出家庭。</view>
+    </view>
+  </block>
+</view>

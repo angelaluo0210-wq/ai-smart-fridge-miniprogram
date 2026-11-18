@@ -1,0 +1,9 @@
+.fridge-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28rpx; padding: 28rpx; background: #e6f4eb; border-radius: 20rpx; }
+.header-name { margin-bottom: 8rpx; font-size: 40rpx; font-weight: 750; }
+.item-actions { margin-top: 22rpx; padding-top: 18rpx; border-top: 2rpx solid #edf2ee; }
+.item-actions button { min-width: 0; padding: 0 10rpx; }
+.discard-btn { color: #87501d; background: #fff0dc; }
+.freeze-btn { color: #235d7a; background: #e3f3fb; }
+.delete-link { margin-top: 12rpx; color: #9f2929; background: transparent; font-size: 26rpx; line-height: 60rpx; }
+.delete-link::after { border: 0; }
+.category-filter { margin-bottom: 22rpx; padding: 22rpx 26rpx; color: #225d42; background: #fff; border: 2rpx solid #dbe6df; border-radius: 16rpx; }

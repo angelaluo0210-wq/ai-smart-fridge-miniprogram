@@ -1,0 +1,6 @@
+.notice { margin-bottom: 20rpx; padding: 20rpx; color: #225d42; background: #e6f4eb; border-radius: 16rpx; }
+.add-button { margin-bottom: 26rpx; }
+.template-card { position: relative; }
+.template-meta { margin-top: 14rpx; color: #66716a; font-size: 28rpx; }
+.card-actions { margin-top: 20rpx; padding-top: 18rpx; border-top: 2rpx solid #edf2ee; }
+.choose { color: #247a52; }

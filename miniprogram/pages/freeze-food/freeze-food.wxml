@@ -1,0 +1,16 @@
+<view class="page">
+  <view wx:if="{{food}}" class="card intro">
+    <view class="name">{{food.name}}</view>
+    <view class="muted">转冷冻会从今天重新计算保存期限</view>
+  </view>
+  <view class="field">
+    <text class="label required">目标冰箱</text>
+    <picker mode="selector" range="{{fridgeNames}}" value="{{fridgeIndex}}" bindchange="onFridgeChange">
+      <view class="picker">{{fridgeIndex >= 0 ? fridgeNames[fridgeIndex] : '请选择冰箱'}}</view>
+    </picker>
+  </view>
+  <view class="field"><text class="label">存放位置</text><input class="input" value="{{storageArea}}" maxlength="30" data-field="storageArea" bindinput="onInput" /></view>
+  <view class="field"><text class="label required">新的保存天数</text><input class="input" type="number" value="{{shelfLifeDays}}" placeholder="例如：30" data-field="shelfLifeDays" bindinput="onInput" /></view>
+  <view wx:if="{{expirePreview}}" class="preview">冻结日期：{{putInDate}}<br/>预计过期：{{expirePreview}}</view>
+  <button class="primary-btn" loading="{{submitting}}" disabled="{{submitting || !food}}" bindtap="submit">确认转冷冻</button>
+</view>

@@ -1,0 +1,18 @@
+<view class="page join-page">
+  <view wx:if="{{loading}}" class="loading">正在验证家庭邀请…</view>
+  <view wx:elif="{{!valid}}" class="card state-card">
+    <view class="state-icon">⚠️</view><view class="section-title">邀请不可用</view>
+    <view class="description">{{errorMessage}}</view>
+    <button class="secondary-btn" bindtap="cancel">返回</button>
+  </view>
+  <view wx:else class="card invite-card">
+    <view class="eyebrow">邀请你加入家庭</view>
+    <view class="household-name">{{household.name}}</view>
+    <view class="benefits">加入后可以：<view>• 查看与你共享的冰箱</view><view>• 管理家庭库存</view><view>• 后续使用家庭购物清单</view></view>
+    <view wx:if="{{membershipState === 'already_member'}}" class="notice">你已经是该家庭成员。</view>
+    <view wx:elif="{{membershipState === 'other_household'}}" class="warning">当前账号已经加入一个家庭，请先退出后再加入其他家庭。</view>
+    <button wx:if="{{membershipState === 'available'}}" class="primary-btn" loading="{{joining}}" disabled="{{joining}}" bindtap="joinHousehold">加入家庭</button>
+    <button wx:elif="{{membershipState === 'already_member'}}" class="primary-btn" bindtap="enterHousehold">进入家庭</button>
+    <button class="secondary-btn cancel-btn" bindtap="cancel">取消</button>
+  </view>
+</view>

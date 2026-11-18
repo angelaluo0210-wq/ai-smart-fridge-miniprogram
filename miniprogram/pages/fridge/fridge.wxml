@@ -1,0 +1,17 @@
+<view class="page tab-page">
+  <button class="primary-btn add-button" bindtap="addFridge">＋ 添加冰箱</button>
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <view wx:elif="{{!fridges.length}}" class="empty">还没有冰箱<br/>先添加厨房冰箱或冷冻柜吧</view>
+  <view wx:else>
+    <view wx:for="{{fridges}}" wx:key="_id" class="card">
+      <view class="row main-row" data-id="{{item._id}}" bindtap="openFridge">
+        <view><view class="name">{{item.name}}</view><view class="muted">{{item.location || '未填写位置'}} · {{item.foodCount}} 件食材</view><view class="visibility-label">{{item.visibilityLabel}}</view></view>
+        <text class="arrow">›</text>
+      </view>
+      <view wx:if="{{item.can_manage}}" class="actions card-actions">
+        <button class="secondary-btn small-btn" data-id="{{item._id}}" catchtap="editFridge">修改</button>
+        <button class="danger-btn small-btn" data-id="{{item._id}}" data-name="{{item.name}}" data-records="{{item.recordCount}}" catchtap="deleteFridge">删除</button>
+      </view>
+    </view>
+  </view>
+</view>

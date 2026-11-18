@@ -1,0 +1,13 @@
+.capture-hero { margin: 50rpx 0 46rpx; text-align: center; }
+.capture-icon { margin-bottom: 22rpx; font-size: 86rpx; }
+.capture-description { max-width: 600rpx; margin: 0 auto; color: #66716a; font-size: 29rpx; line-height: 1.75; }
+.state-card { margin-top: 28rpx; padding: 26rpx; color: #66716a; background: #fff; border-radius: 18rpx; line-height: 1.6; }
+.stage-card { margin-top: 24rpx; padding: 24rpx 30rpx; background: #fff; border-radius: 18rpx; }
+.stage-row { display: flex; align-items: center; gap: 18rpx; min-height: 64rpx; color: #8a958f; font-size: 29rpx; }
+.stage-row.active { color: #247a52; font-weight: 650; }
+.stage-row.done { color: #4d6558; }
+.stage-row.error { color: #b83232; }
+.stage-icon { width: 34rpx; text-align: center; }
+.error-state { color: #9f2929; background: #fff0f0; }
+.manual-btn { margin-top: 24rpx; }
+.privacy-note { margin-top: 38rpx; padding: 0 12rpx; color: #7b8780; font-size: 25rpx; line-height: 1.7; }

@@ -1,0 +1,11 @@
+.join-page { padding-top: 80rpx; }
+.state-card, .invite-card { padding: 48rpx 36rpx; text-align: center; }
+.state-icon { margin-bottom: 20rpx; font-size: 70rpx; }
+.eyebrow { color: #66716a; font-size: 28rpx; }
+.household-name { margin: 24rpx 0 32rpx; font-size: 46rpx; font-weight: 700; }
+.description, .benefits { margin-bottom: 32rpx; color: #66716a; font-size: 28rpx; line-height: 1.9; }
+.benefits { padding: 24rpx; text-align: left; background: #eef6f1; border-radius: 16rpx; }
+.notice, .warning { margin-bottom: 26rpx; padding: 20rpx; font-size: 28rpx; border-radius: 14rpx; }
+.notice { color: #16633f; background: #dff4e7; }
+.warning { color: #8a5700; background: #fff0c7; }
+.cancel-btn { margin-top: 18rpx; }

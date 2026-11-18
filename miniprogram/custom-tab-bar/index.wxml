@@ -1,0 +1,12 @@
+<view class="tab-shell">
+  <view class="tab-bar">
+    <view wx:for="{{tabs}}" wx:key="text" class="tab-item {{item.route === selectedRoute ? 'selected' : ''}} {{item.action === 'add' ? 'add-item' : ''}}" data-index="{{index}}" bindtap="onTabTap">
+      <block wx:if="{{item.action === 'add'}}"><view class="add-circle">＋</view><text class="add-text">添加</text></block>
+      <block wx:else>
+        <text class="tab-icon">{{item.icon}}</text>
+        <text class="tab-text">{{item.text}}</text>
+      </block>
+    </view>
+  </view>
+  <view class="safe-area"></view>
+</view>

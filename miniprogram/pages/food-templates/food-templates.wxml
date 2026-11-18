@@ -1,0 +1,19 @@
+<view class="page">
+  <view wx:if="{{selectMode}}" class="notice">点击一个模板，即可预填到新增食材页面。</view>
+  <button class="primary-btn add-button" bindtap="addTemplate">＋ 新增常用模板</button>
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <view wx:elif="{{!templates.length}}" class="empty">还没有常用模板<br/>可先添加鸡蛋、牛奶或豆腐</view>
+  <view wx:else>
+    <view wx:for="{{templates}}" wx:key="_id" class="card template-card" data-id="{{item._id}}" bindtap="selectTemplate">
+      <view class="row">
+        <view><view class="name">{{item.name}}</view><view class="muted">{{item.categoryLabel}} · 默认 {{item.default_shelf_life_days}} 天</view></view>
+        <text wx:if="{{selectMode}}" class="choose">选择 ›</text>
+      </view>
+      <view class="template-meta">{{item.fridgeName}} · {{item.default_storage_area || '添加时填写位置'}}</view>
+      <view class="actions card-actions">
+        <button class="secondary-btn small-btn" data-id="{{item._id}}" catchtap="editTemplate">编辑</button>
+        <button class="danger-btn small-btn" data-id="{{item._id}}" data-name="{{item.name}}" catchtap="deleteTemplate">删除</button>
+      </view>
+    </view>
+  </view>
+</view>

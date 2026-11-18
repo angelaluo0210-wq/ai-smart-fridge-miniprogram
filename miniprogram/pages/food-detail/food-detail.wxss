@@ -1,0 +1,16 @@
+.summary { border-left: 12rpx solid #dff4e7; }
+.summary.near_expiry { border-left-color: #efb642; }
+.summary.expired { border-left-color: #d85c5c; }
+.summary.consumed { border-left-color: #9aa29e; }
+.food-name { font-size: 44rpx; font-weight: 750; }
+.remaining { margin-top: 18rpx; color: #4f5d55; }
+.detail-row { display: flex; justify-content: space-between; gap: 30rpx; padding: 22rpx 0; border-bottom: 2rpx solid #edf2ee; }
+.detail-row:last-child { border: none; }
+.detail-row text:first-child { color: #66716a; }
+.detail-row text:last-child { text-align: right; }
+.note-row { align-items: flex-start; }
+.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14rpx; }
+.quick-actions button { min-height: 88rpx; padding: 0 8rpx; border-radius: 16rpx; font-size: 30rpx; line-height: 88rpx; }
+.discard-btn { color: #87501d; background: #fff0dc; }
+.freeze-btn { color: #235d7a; background: #e3f3fb; }
+.delete-record { margin-top: 22rpx; }

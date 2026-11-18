@@ -1,0 +1,35 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">正在准备确认页…</view>
+  <block wx:else>
+    <view class="field">
+      <text class="label required">加入哪个冰箱</text>
+      <picker mode="selector" range="{{fridgeNames}}" value="{{fridgeIndex}}" bindchange="onFridgeChange">
+        <view class="picker {{fridgeIndex < 0 ? 'placeholder' : ''}}">{{fridgeIndex >= 0 ? fridgeNames[fridgeIndex] : '请选择目标冰箱'}}</view>
+      </picker>
+    </view>
+    <view class="review-tip">请核对识别结果。只有勾选的项目会加入库存，所有字段都可以修改。</view>
+    <view wx:if="{{!foods.length}}" class="empty">没有候选食材，可以手动新增一项。</view>
+    <view wx:for="{{foods}}" wx:key="_key" class="card review-card {{item.selected ? '' : 'disabled-card'}}">
+      <view class="review-header">
+        <view class="select-row"><switch checked="{{item.selected}}" color="#247A52" data-index="{{index}}" bindchange="toggleItem"/><text>{{item.selected ? '导入' : '不导入'}}</text></view>
+        <text class="remove" data-index="{{index}}" bindtap="removeItem">删除</text>
+      </view>
+      <view class="field compact-field"><text class="label required">名称</text><input class="input" maxlength="30" value="{{item.name}}" data-index="{{index}}" data-field="name" bindinput="onFieldInput"/></view>
+      <view class="field compact-field"><text class="label">分类</text><picker mode="selector" range="{{categoryNames}}" value="{{item.categoryIndex}}" data-index="{{index}}" bindchange="onCategoryChange"><view class="picker">{{categoryNames[item.categoryIndex]}}</view></picker></view>
+      <view class="two-fields">
+        <view class="field compact-field"><text class="label">存储方式</text><picker mode="selector" range="{{storageModeNames}}" value="{{item.storageModeIndex}}" data-index="{{index}}" bindchange="onStorageModeChange"><view class="picker">{{storageModeNames[item.storageModeIndex]}}</view></picker></view>
+        <view class="field compact-field"><text class="label">存放区域</text><input class="input" maxlength="30" value="{{item.storageArea}}" placeholder="例如：冷藏" data-index="{{index}}" data-field="storageArea" bindinput="onFieldInput"/></view>
+      </view>
+      <view class="field compact-field">
+        <text class="label required">保存天数</text>
+        <input class="input" type="number" value="{{item.shelfLifeDays}}" data-index="{{index}}" data-field="shelfLifeDays" bindinput="onFieldInput"/>
+        <view wx:if="{{item.recommendationText}}" class="item-recommendation">
+          <text>{{item.recommendationText}}</text>
+          <text wx:if="{{item.shelfLifeManuallyEdited && item.recommendationDays}}" class="restore-link" data-index="{{index}}" bindtap="restoreRecommendation">恢复推荐</text>
+        </view>
+      </view>
+    </view>
+    <button class="secondary-btn add-row-btn" bindtap="addItem">＋ 新增漏识别食材</button>
+    <button class="primary-btn submit-btn" loading="{{submitting}}" disabled="{{submitting || !fridges.length}}" bindtap="submit">确认加入库存</button>
+  </block>
+</view>

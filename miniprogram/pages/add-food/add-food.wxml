@@ -1,0 +1,52 @@
+<view class="page">
+  <view wx:if="{{!fridges.length}}" class="notice">还没有冰箱，请先到“冰箱”页添加冰箱。</view>
+  <view class="field">
+    <view class="label-row"><text class="label required">食材名称</text><text class="template-link" bindtap="openTemplates">从常用模板选择</text></view>
+    <input class="input" value="{{name}}" maxlength="30" placeholder="例如：豆腐" data-field="name" bindinput="onInput" />
+  </view>
+  <view class="field">
+    <text class="label required">放入哪个冰箱</text>
+    <picker mode="selector" range="{{fridgeNames}}" value="{{fridgeIndex}}" bindchange="onFridgeChange">
+      <view class="picker {{fridgeIndex < 0 ? 'placeholder' : ''}}">{{fridgeIndex >= 0 ? fridgeNames[fridgeIndex] : '请选择冰箱'}}</view>
+    </picker>
+  </view>
+  <view class="two-columns settings-columns">
+    <view class="field">
+      <text class="label required">存储方式</text>
+      <picker mode="selector" range="{{storageModeNames}}" value="{{storageModeIndex}}" bindchange="onStorageModeChange">
+        <view class="picker">{{storageModeNames[storageModeIndex]}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <text class="label">分类</text>
+      <picker mode="selector" range="{{categoryNames}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="picker {{categoryIndex < 0 ? 'placeholder' : ''}}">{{categoryIndex >= 0 ? categoryNames[categoryIndex] : '请选择分类'}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="field"><text class="label">存放位置</text><input class="input" value="{{storageArea}}" maxlength="30" placeholder="例如：冷藏室上层（选填）" data-field="storageArea" bindinput="onInput" /></view>
+  <view class="two-columns date-days-columns">
+    <view class="field">
+      <text class="label required">放入日期</text>
+      <picker mode="date" value="{{putInDate}}" bindchange="onDateChange"><view class="picker">{{putInDate}}</view></picker>
+    </view>
+    <view class="field">
+      <text class="label required">保存天数</text>
+      <view class="input-with-suffix">
+        <input class="embedded-input" type="number" value="{{shelfLifeDays}}" placeholder="例如：3" data-field="shelfLifeDays" bindinput="onInput" />
+        <text class="input-suffix">天</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{recommendationText}}" class="smart-suggestion">
+    <text>{{recommendationText}}</text>
+    <text wx:if="{{shelfLifeManuallyEdited && recommendationDays}}" class="restore-link" bindtap="restoreRecommendation">恢复推荐</text>
+  </view>
+  <view wx:if="{{expirePreview}}" class="expire-preview">预计过期日期：<text>{{expirePreview}}</text></view>
+  <view class="two-columns quantity-columns">
+    <view class="field"><text class="label">数量</text><input class="input" type="digit" value="{{quantity}}" placeholder="例如：2" data-field="quantity" bindinput="onInput" /></view>
+    <view class="field"><text class="label">单位</text><input class="input" value="{{unit}}" maxlength="10" placeholder="盒 / 个 / 克" data-field="unit" bindinput="onInput" /></view>
+  </view>
+  <view class="field"><text class="label">备注</text><textarea class="textarea" value="{{note}}" maxlength="200" placeholder="选填" data-field="note" bindinput="onInput" /></view>
+  <button class="primary-btn" loading="{{submitting}}" disabled="{{submitting || !fridges.length}}" bindtap="submit">保存食材</button>
+</view>

@@ -1,0 +1,20 @@
+.description { margin-top: 18rpx; color: #66716a; font-size: 28rpx; line-height: 1.7; }
+.empty-household { padding-top: 42rpx; padding-bottom: 42rpx; text-align: center; }
+.empty-title { font-size: 36rpx; font-weight: 650; }
+.load-error { margin-top: 36rpx; text-align: center; }
+.retry-btn { margin-top: 26rpx; }
+.household-heading { min-height: 82rpx; }
+.household-heading .muted { margin-top: 10rpx; }
+.household-heading .small-btn { min-width: 176rpx; }
+.member-card { min-height: 92rpx; }
+.member-info { display: flex; align-items: center; gap: 20rpx; }
+.member-icon { width: 64rpx; font-size: 40rpx; text-align: center; }
+.member-info .muted { margin-top: 8rpx; }
+.remove-btn { color: #9f2929; background: #fff0f0; }
+.leave-btn { margin-top: 20rpx; }
+.owner-tip { margin-top: 22rpx; color: #718078; font-size: 26rpx; text-align: center; }
+.invite-panel { margin-top: 20rpx; }
+.invite-action { margin-top: 18rpx; }
+.qr-wrap { margin-top: 22rpx; text-align: center; }
+.invite-qr { width: 420rpx; height: 420rpx; }
+.revoke-link { margin-top: 18rpx; color: #9f2929; font-size: 28rpx; background: transparent; }

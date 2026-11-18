@@ -1,0 +1,5 @@
+.add-button { margin-bottom: 28rpx; }
+.compact { padding: 36rpx 24rpx; }
+.item-actions { margin-top: 20rpx; padding-top: 18rpx; border-top: 2rpx solid #edf2ee; }
+.purchased-card { opacity: .92; }
+.purchased-tag { padding: 8rpx 14rpx; color: #16633f; background: #dff4e7; border-radius: 999rpx; font-size: 25rpx; }

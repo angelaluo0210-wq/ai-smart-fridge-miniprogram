@@ -1,0 +1,19 @@
+<view class="page tab-page">
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <block wx:else>
+    <view class="section">
+      <view class="section-title">快过期（{{nearExpiry.length}}）</view>
+      <view wx:if="{{!nearExpiry.length}}" class="empty compact">没有快过期食材</view>
+      <view wx:for="{{nearExpiry}}" wx:key="_id" class="card food-card near_expiry" data-id="{{item._id}}" bindtap="openFood">
+        <view class="row"><view><view class="name">{{item.name}}</view><view class="food-meta">{{item.fridgeName}} · {{item.remainingText}}</view></view><text class="status status-near_expiry">快过期</text></view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="section-title">已过期（{{expired.length}}）</view>
+      <view wx:if="{{!expired.length}}" class="empty compact">没有已过期食材</view>
+      <view wx:for="{{expired}}" wx:key="_id" class="card food-card expired" data-id="{{item._id}}" bindtap="openFood">
+        <view class="row"><view><view class="name">{{item.name}}</view><view class="food-meta">{{item.fridgeName}} · {{item.remainingText}}</view></view><text class="status status-expired">已过期</text></view>
+      </view>
+    </view>
+  </block>
+</view>

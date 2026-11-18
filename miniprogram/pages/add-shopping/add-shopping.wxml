@@ -1,0 +1,9 @@
+<view class="page">
+  <view class="field"><text class="label required">食材名称</text><input class="input" value="{{name}}" maxlength="30" placeholder="例如：牛奶" data-field="name" bindinput="onInput" /></view>
+  <view class="field"><text class="label">分类</text><picker mode="selector" range="{{categoryNames}}" value="{{categoryIndex}}" bindchange="onCategoryChange"><view class="picker">{{categoryNames[categoryIndex]}}</view></picker></view>
+  <view class="two-columns">
+    <view class="field"><text class="label">数量</text><input class="input" type="digit" value="{{quantity}}" placeholder="例如：2" data-field="quantity" bindinput="onInput" /></view>
+    <view class="field"><text class="label">单位</text><input class="input" value="{{unit}}" maxlength="10" placeholder="盒 / 个" data-field="unit" bindinput="onInput" /></view>
+  </view>
+  <button class="primary-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submit">加入购物清单</button>
+</view>

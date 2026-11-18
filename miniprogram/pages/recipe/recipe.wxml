@@ -1,0 +1,54 @@
+<view class="page">
+  <view wx:if="{{!recipe}}" class="empty">菜谱数据已失效，请返回首页重新生成。</view>
+  <block wx:else>
+    <view class="recipe-hero">
+      <view class="recipe-name">{{recipe.title}}</view>
+      <view wx:if="{{recipe.summary}}" class="recipe-reason">{{recipe.summary}}</view>
+      <view wx:if="{{recipe.estimatedMinutes}}" class="time-badge">约 {{recipe.estimatedMinutes}} 分钟</view>
+    </view>
+    <view class="section">
+      <view class="section-title">库存已有</view>
+      <view class="card">
+        <view wx:if="{{!recipe.stockedIngredients.length}}" class="muted">没有识别到明确用量，请以实际库存为准。</view>
+        <view wx:for="{{recipe.stockedIngredients}}" wx:key="name" class="ingredient-row"><text>{{item.name}}</text><text class="muted">{{item.amount || '适量'}}</text></view>
+      </view>
+    </view>
+    <view wx:if="{{recipe.additionalIngredients.length}}" class="section">
+      <view class="section-title">还需要</view>
+      <view class="card additional-card">
+        <view wx:for="{{recipe.additionalIngredients}}" wx:key="name" class="ingredient-row"><text>{{item.name}}</text><text class="muted">{{item.amount || '适量'}}</text></view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="section-title">做法</view>
+      <view class="card steps-card">
+        <view wx:for="{{recipe.steps}}" wx:key="*this" class="step-row"><text class="step-number">{{index + 1}}</text><text class="step-text">{{item}}</text></view>
+      </view>
+    </view>
+    <view class="safety-note">烹饪前请检查食材气味、外观和保存状况；对安全性有疑问时不要仅依赖 AI 建议。</view>
+    <button class="primary-btn cook-btn" loading="{{previewLoading}}" disabled="{{previewLoading || consuming}}" bindtap="startCooking">做这道菜</button>
+  </block>
+</view>
+
+<view wx:if="{{showConsumption}}" class="modal-mask" bindtap="closeConsumption">
+  <view class="consume-modal" catchtap="stopPropagation">
+    <view class="modal-title">确认制作</view>
+    <view class="modal-tip">本次预计消耗，可按实际用量修改。库存不足时最多扣到 0。</view>
+    <scroll-view scroll-y class="consume-list">
+      <view wx:for="{{consumptionRows}}" wx:key="name" class="consume-row">
+        <view class="consume-name">{{item.name}}</view>
+        <view class="consume-inputs">
+          <input class="consume-input" type="digit" value="{{item.quantityText}}" placeholder="0" data-index="{{index}}" data-field="quantityText" bindinput="onConsumptionInput" />
+          <input class="consume-unit" value="{{item.unitText}}" maxlength="10" placeholder="单位" data-index="{{index}}" data-field="unitText" bindinput="onConsumptionInput" />
+        </view>
+        <view class="stock-line">可用库存：{{item.inventoryQuantity}} {{item.unit || item.unitText}}</view>
+        <view wx:if="{{item.shortage > 0}}" class="shortage-line">缺少 {{item.shortage}} {{item.unitText}}</view>
+        <view wx:if="{{item.warning}}" class="warning-line">{{item.warning}}</view>
+      </view>
+    </scroll-view>
+    <view class="modal-actions">
+      <button class="secondary-btn" disabled="{{consuming}}" bindtap="closeConsumption">取消</button>
+      <button class="primary-btn" loading="{{consuming}}" disabled="{{consuming}}" bindtap="confirmCooking">确认制作</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,61 @@
+<view class="page tab-page">
+  <view class="section">
+    <view class="section-title">用户信息</view>
+    <view class="card">
+      <view class="row"><text>微信云身份</text><text class="muted">尾号 {{openidTail || '加载中…'}}</text></view>
+      <view class="privacy">身份由微信云开发安全识别，不需要手机号或密码。</view>
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-title">提醒设置</view>
+    <view class="card">
+      <view class="name">食材到期订阅提醒</view>
+      <view class="description">授权后可接收一次到期提醒。消息发送后，如需再次接收，请重新订阅。</view>
+      <button class="primary-btn" loading="{{requesting}}" disabled="{{requesting}}" bindtap="enableReminder">订阅到期提醒</button>
+      <view wx:if="{{!templateConfigured}}" class="warning">尚未配置订阅消息模板 ID，按钮会提示配置位置。</view>
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-title">家庭协作</view>
+    <view class="card row entry-card" bindtap="openHousehold">
+      <view><view class="name">我的家庭</view><view class="muted">创建或管理家庭成员</view></view>
+      <text class="entry-arrow">›</text>
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-title">数据报告</view>
+    <view class="card row entry-card" bindtap="openWasteReport">
+      <view><view class="name">冰箱报告</view><view class="muted">查看吃掉、扔掉与浪费率</view></view>
+      <text class="entry-arrow">›</text>
+    </view>
+    <view class="card row entry-card" bindtap="openFoodSafety">
+      <view><view class="name">食品安全助手</view><view class="muted">查询保存与食品安全资料</view></view>
+      <text class="entry-arrow">›</text>
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-title">快捷录入</view>
+    <view class="card row entry-card" bindtap="openFoodTemplates">
+      <view><view class="name">常用食材模板</view><view class="muted">保存常用分类、位置和天数</view></view>
+      <text class="entry-arrow">›</text>
+    </view>
+  </view>
+  <view wx:if="{{showReminderTest}}" class="section">
+    <view class="section-title">开发调试</view>
+    <view class="card">
+      <view class="name">智能服务连接诊断</view>
+      <view class="description">从当前开发版调用 smartFood.getCapabilities，核对云环境和部署 build。</view>
+      <button class="secondary-btn" loading="{{testingSmartFood}}" disabled="{{testingSmartFood}}" bindtap="testSmartFoodConnection">检查智能服务连接</button>
+    </view>
+    <view class="card">
+      <view class="name">AI Provider 连通性诊断</view>
+      <view class="description">仅发送“回复 OK”的最小请求，不读取或发送库存数据。</view>
+      <button class="secondary-btn" loading="{{testingProvider}}" disabled="{{testingProvider}}" bindtap="testProviderConnection">测试 AI 服务连接</button>
+    </view>
+    <view class="card">
+      <view class="name">订阅消息真机测试</view>
+      <view class="description">请先订阅提醒并准备一条 0–2 天内到期的食材，再从开发版小程序发起测试。</view>
+      <button class="secondary-btn" loading="{{testingReminder}}" disabled="{{testingReminder}}" bindtap="testSendReminder">测试发送到期提醒</button>
+    </view>
+  </view>
+</view>

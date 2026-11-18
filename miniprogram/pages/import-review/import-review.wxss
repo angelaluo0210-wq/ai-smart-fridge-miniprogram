@@ -1,0 +1,12 @@
+.review-tip { margin-bottom: 24rpx; padding: 22rpx 24rpx; color: #536159; font-size: 27rpx; line-height: 1.6; background: #eaf5ee; border-radius: 16rpx; }
+.review-card { transition: opacity .2s; }
+.disabled-card { opacity: .58; }
+.review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22rpx; }
+.select-row { display: flex; align-items: center; gap: 12rpx; color: #536159; font-size: 28rpx; }
+.remove { color: #b83232; font-size: 27rpx; }
+.compact-field { margin-bottom: 20rpx; }
+.two-fields { display: grid; grid-template-columns: .8fr 1.35fr; gap: 18rpx; }
+.item-recommendation { display: flex; justify-content: space-between; gap: 16rpx; margin-top: 12rpx; padding: 16rpx 18rpx; color: #315442; background: #eaf5ee; border-radius: 14rpx; font-size: 25rpx; line-height: 1.5; }
+.restore-link { flex: none; color: #176b45; font-weight: 650; }
+.add-row-btn { margin-top: 8rpx; }
+.submit-btn { margin-top: 24rpx; }

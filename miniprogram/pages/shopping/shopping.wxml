@@ -1,0 +1,28 @@
+<view class="page">
+  <button class="primary-btn add-button" bindtap="addItem">＋ 添加购物项</button>
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <block wx:else>
+    <view class="section">
+      <view class="section-title">待购买（{{pending.length}}）</view>
+      <view wx:if="{{!pending.length}}" class="empty compact">目前没有待购买食材</view>
+      <view wx:for="{{pending}}" wx:key="_id" class="card">
+        <view class="row"><view><view class="name">{{item.name}}</view><view class="muted">{{item.categoryLabel}} · {{item.quantity || '未填'}}{{item.unit || ''}}</view></view></view>
+        <view class="actions item-actions">
+          <button class="secondary-btn small-btn" data-id="{{item._id}}" bindtap="markPurchased">标记已购买</button>
+          <button class="danger-btn small-btn" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="deleteItem">删除</button>
+        </view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="section-title">已购买（{{purchased.length}}）</view>
+      <view wx:if="{{!purchased.length}}" class="empty compact">购买后可快速加入冰箱</view>
+      <view wx:for="{{purchased}}" wx:key="_id" class="card purchased-card">
+        <view class="row"><view><view class="name">{{item.name}}</view><view class="muted">{{item.categoryLabel}} · {{item.quantity || '未填'}}{{item.unit || ''}}</view></view><text class="purchased-tag">已购买</text></view>
+        <view class="actions item-actions">
+          <button class="primary-btn small-btn" data-id="{{item._id}}" bindtap="addToFridge">加入冰箱</button>
+          <button class="danger-btn small-btn" data-id="{{item._id}}" data-name="{{item.name}}" bindtap="deleteItem">删除</button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,34 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">正在加载冰箱设置…</view>
+  <block wx:else>
+  <view class="field">
+    <text class="label required">冰箱名称</text>
+    <input class="input" value="{{name}}" maxlength="30" placeholder="例如：厨房冰箱" bindinput="onNameInput" />
+  </view>
+  <view class="field">
+    <text class="label">所在位置</text>
+    <input class="input" value="{{location}}" maxlength="30" placeholder="例如：厨房（选填）" bindinput="onLocationInput" />
+  </view>
+  <view class="field">
+    <text class="label">可见范围</text>
+    <view wx:if="{{!hasHousehold}}" class="visibility-note">仅自己可见。创建家庭后可以设置共享范围。</view>
+    <radio-group wx:else class="visibility-list" bindchange="onVisibilityChange">
+      <label wx:for="{{visibilityOptions}}" wx:key="key" class="visibility-option">
+        <radio value="{{item.key}}" checked="{{visibility === item.key}}" color="#247a52" />
+        <view><view class="option-title">{{item.label}}</view><view class="option-description">{{item.description}}</view></view>
+      </label>
+    </radio-group>
+  </view>
+  <view wx:if="{{hasHousehold && visibility === 'selected'}}" class="field member-picker">
+    <text class="label">选择共享成员</text>
+    <view wx:if="{{!selectableMembers.length}}" class="visibility-note">当前还没有其他家庭成员可选择</view>
+    <checkbox-group wx:else bindchange="onSelectedMembersChange">
+      <label wx:for="{{selectableMembers}}" wx:key="_id" class="member-option">
+        <checkbox value="{{item.user_openid}}" checked="{{item.checked}}" color="#247a52" />
+        <text>{{item.displayName}} · {{item.roleLabel}}</text>
+      </label>
+    </checkbox-group>
+  </view>
+  <button class="primary-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submit">保存</button>
+  </block>
+</view>

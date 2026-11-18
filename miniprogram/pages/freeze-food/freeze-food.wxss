@@ -1,0 +1,2 @@
+.intro { line-height: 1.8; }
+.preview { margin-bottom: 28rpx; padding: 22rpx; color: #235d7a; background: #e3f3fb; border-radius: 16rpx; line-height: 1.7; }

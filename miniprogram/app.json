@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/fridge/fridge",
+    "pages/reminders/reminders",
+    "pages/profile/profile",
+    "pages/waste-report/waste-report",
+    "pages/smart-capture/smart-capture",
+    "pages/import-review/import-review",
+    "pages/recipe/recipe",
+    "pages/food-safety/food-safety",
+    "pages/household/household",
+    "pages/join-household/join-household",
+    "pages/fridge-detail/fridge-detail",
+    "pages/add-fridge/add-fridge",
+    "pages/add-food/add-food",
+    "pages/food-detail/food-detail",
+    "pages/search/search",
+    "pages/freeze-food/freeze-food",
+    "pages/food-templates/food-templates",
+    "pages/edit-template/edit-template",
+    "pages/shopping/shopping",
+    "pages/add-shopping/add-shopping"
+  ],
+  "window": {
+    "navigationBarTitleText": "冰箱管家",
+    "navigationBarBackgroundColor": "#F6FAF7",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F6FAF7"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#66716A",
+    "selectedColor": "#247A52",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/fridge/fridge", "text": "冰箱" },
+      { "pagePath": "pages/reminders/reminders", "text": "提醒" },
+      { "pagePath": "pages/profile/profile", "text": "我的" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

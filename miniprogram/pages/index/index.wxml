@@ -1,0 +1,76 @@
+<view class="page tab-page">
+  <view class="hero">
+    <view class="hero-title">家里的食材，一眼看清</view>
+    <view class="hero-subtitle">及时处理快过期食材，少忘记、少浪费</view>
+  </view>
+
+  <view class="top-entries">
+    <view class="top-entry search-entry" bindtap="openSearch">🔍 搜索食材</view>
+    <view class="top-entry shopping-entry" bindtap="openShopping">🛒 购物清单</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <block wx:else>
+    <view class="section recipe-section">
+      <view class="section-header">
+        <view class="section-title no-margin">今天吃什么？</view>
+        <button class="recipe-refresh" loading="{{recipeLoading && recipes.length}}" disabled="{{recipeLoading}}" bindtap="refreshRecipes">换一批</button>
+      </view>
+      <view wx:if="{{recipeLoading && !recipes.length}}" class="card recipe-state">正在根据冰箱库存准备今日菜谱…</view>
+      <scroll-view wx:if="{{recipes.length}}" class="recipe-scroll" scroll-x enable-flex>
+        <view class="recipe-list">
+          <view wx:for="{{recipes}}" wx:key="title" class="card recipe-card" data-index="{{index}}" bindtap="openRecipe">
+            <view class="recipe-title">{{item.title}}</view>
+            <view wx:if="{{item.summary}}" class="recipe-summary">{{item.summary}}</view>
+            <view wx:if="{{item.priorityIngredients.length}}" class="recipe-priority">
+              <text wx:for="{{item.priorityIngredients}}" wx:for-item="ingredient" wx:key="*this" class="ingredient-chip">{{ingredient}}</text>
+            </view>
+            <view class="recipe-footer"><text>{{item.estimatedMinutes ? '约 ' + item.estimatedMinutes + ' 分钟' : '详细做法'}}</text><text>查看 ›</text></view>
+          </view>
+        </view>
+      </scroll-view>
+      <view wx:if="{{recipeMessage}}" class="recipe-message" bindtap="retryRecipe">{{recipeMessage}}{{recipes.length ? '' : ' · 点击重试'}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">今日冰箱</view>
+      <view class="card today-card">
+        <view class="today-stats">
+          <view class="today-stat" hover-class="stat-pressed" data-status="all" bindtap="openInventoryStat"><text class="today-number">{{inventoryCount}}</text><text>库存 ›</text></view>
+          <view class="today-stat near" hover-class="stat-pressed" data-status="near_expiry" bindtap="openInventoryStat"><text class="today-number">{{counts.near_expiry}}</text><text>快过期 ›</text></view>
+          <view class="today-stat expired" hover-class="stat-pressed" data-status="expired" bindtap="openInventoryStat"><text class="today-number">{{counts.expired}}</text><text>已过期 ›</text></view>
+        </view>
+        <view wx:if="{{priorityFoods.length}}" class="priority">
+          <view wx:for="{{priorityFoods}}" wx:key="_id" class="priority-row">
+            <view class="priority-main"><text class="priority-dot {{item.computedStatus}}"></text><text>{{item.name}}</text></view>
+            <text class="priority-time">{{item.remainingText}}</text>
+          </view>
+        </view>
+        <view wx:else class="today-clear">目前没有临期或过期食材</view>
+        <view class="card-link" bindtap="openReminders">查看全部提醒 <text class="arrow">›</text></view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title no-margin">我的冰箱</view>
+        <view class="section-link" bindtap="openAllFridges">查看全部 <text>›</text></view>
+      </view>
+      <view wx:if="{{!fridges.length}}" class="empty">还没有冰箱，请先到“冰箱”页添加</view>
+      <view wx:for="{{fridges}}" wx:key="_id" class="card fridge-card" data-id="{{item._id}}" bindtap="openFridge">
+        <view><view class="name">{{item.name}}</view><view class="muted">{{item.location || '未填写位置'}}</view></view>
+        <view class="fridge-count">{{item.foodCount}} 件 <text class="arrow">›</text></view>
+      </view>
+      <view wx:if="{{hasMoreFridges}}" class="more-hint" bindtap="openAllFridges">更多冰箱请在冰箱页查看</view>
+    </view>
+
+    <view class="section quick-add-section">
+      <view class="section-title">快捷添加</view>
+      <view class="quick-add-grid">
+        <view class="quick-add-item" bindtap="addFood"><text class="quick-icon">＋</text><text>手动添加</text></view>
+        <view class="quick-add-item" bindtap="recognizeFoods"><text class="quick-icon">📷</text><text>拍照识别</text></view>
+        <view class="quick-add-item" bindtap="scanReceipt"><text class="quick-icon">🧾</text><text>扫描小票</text></view>
+      </view>
+    </view>
+  </block>
+</view>

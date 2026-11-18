@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="search-box">
+    <input class="search-input" value="{{keyword}}" maxlength="30" focus="{{!statusFilter}}" placeholder="输入食材名称，例如：豆腐" bindinput="onKeywordInput" />
+    <text wx:if="{{keyword}}" class="clear" bindtap="clearKeyword">清除</text>
+  </view>
+  <block wx:if="{{statusFilter === 'expired'}}">
+    <button wx:if="{{results.length}}" class="danger-btn clear-expired-btn" loading="{{clearingExpired}}" disabled="{{clearingExpired}}" bindtap="clearExpired">清理全部已过期（{{results.length}}）</button>
+  </block>
+  <view wx:if="{{loading}}" class="loading">正在加载库存…</view>
+  <view wx:elif="{{!keyword && !statusFilter}}" class="empty">输入名称即可搜索所有冰箱的当前库存</view>
+  <view wx:elif="{{!results.length}}" class="empty">{{statusFilter ? '当前没有' + filterLabel : '没有找到“' + keyword + '”'}}</view>
+  <view wx:else>
+    <view class="result-count">找到 {{results.length}} 件食材</view>
+    <view wx:for="{{results}}" wx:key="_id" class="card food-card {{item.computedStatus}}" data-id="{{item._id}}" bindtap="openFood">
+      <view class="row">
+        <view class="result-main">
+          <view class="name">{{item.name}}</view>
+          <view class="food-meta">{{item.fridgeName}} · {{item.storage_area || '未填写区域'}}</view>
+          <view class="food-meta">{{item.quantity ? item.quantity + (item.unit || '') : '数量未填写'}} · 过期 {{item.expire_date}}</view>
+        </view>
+        <view class="result-status"><text class="status status-{{item.computedStatus}}">{{item.statusText}}</text><text class="remaining-text">{{item.remainingText}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>

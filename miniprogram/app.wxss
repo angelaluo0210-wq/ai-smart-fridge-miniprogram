@@ -1,0 +1,39 @@
+page {
+  min-height: 100%;
+  background: #f6faf7;
+  color: #1d2923;
+  font-size: 32rpx;
+}
+
+.page { padding: 28rpx; box-sizing: border-box; }
+.tab-page { padding-bottom: calc(148rpx + env(safe-area-inset-bottom)); }
+.section { margin-bottom: 30rpx; }
+.section-title { margin: 0 0 18rpx; font-size: 38rpx; font-weight: 700; }
+.card { margin-bottom: 20rpx; padding: 28rpx; background: #fff; border-radius: 20rpx; box-shadow: 0 6rpx 24rpx rgba(28, 67, 46, .06); }
+.muted { color: #66716a; font-size: 28rpx; }
+.empty { padding: 64rpx 28rpx; color: #718078; text-align: center; background: #fff; border-radius: 20rpx; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; }
+.name { font-size: 34rpx; font-weight: 650; }
+.primary-btn, .secondary-btn, .danger-btn { min-height: 92rpx; border-radius: 18rpx; font-size: 34rpx; font-weight: 650; line-height: 92rpx; }
+.primary-btn { color: #fff; background: #247a52; }
+.secondary-btn { color: #225d42; background: #e6f4eb; }
+.danger-btn { color: #9f2929; background: #fff0f0; }
+.small-btn { margin: 0; min-width: 140rpx; min-height: 72rpx; padding: 0 22rpx; border-radius: 14rpx; font-size: 28rpx; line-height: 72rpx; }
+.actions { display: flex; gap: 18rpx; }
+.actions button { flex: 1; }
+.field { margin-bottom: 28rpx; }
+.label { display: block; margin-bottom: 12rpx; font-size: 30rpx; font-weight: 600; }
+.required::after { content: ' *'; color: #b83232; }
+.input, .picker, .textarea { width: 100%; box-sizing: border-box; padding: 24rpx; background: #fff; border: 2rpx solid #dbe6df; border-radius: 16rpx; font-size: 32rpx; }
+.textarea { min-height: 150rpx; }
+.status { display: inline-block; padding: 8rpx 16rpx; border-radius: 999rpx; font-size: 26rpx; font-weight: 650; }
+.status-fresh { color: #16633f; background: #dff4e7; }
+.status-near_expiry { color: #8a5700; background: #fff0c7; }
+.status-expired { color: #9f2929; background: #ffe0e0; }
+.status-consumed { color: #5f6863; background: #e8ecea; }
+.status-discarded { color: #765222; background: #f4e8d6; }
+.food-card { border-left: 10rpx solid #dff4e7; }
+.food-card.near_expiry { border-left-color: #efb642; }
+.food-card.expired { border-left-color: #d85c5c; }
+.food-meta { margin-top: 12rpx; color: #66716a; font-size: 28rpx; line-height: 1.65; }
+.loading { padding: 80rpx 0; color: #66716a; text-align: center; }

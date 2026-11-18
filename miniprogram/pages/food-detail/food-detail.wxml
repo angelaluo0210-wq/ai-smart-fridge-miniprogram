@@ -1,0 +1,25 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <view wx:elif="{{food}}">
+    <view class="card summary {{food.computedStatus}}">
+      <view class="row"><view class="food-name">{{food.name}}</view><text class="status status-{{food.computedStatus}}">{{food.statusText}}</text></view>
+      <view class="remaining">{{food.isInactive ? '已退出当前库存' : food.remainingText}}</view>
+    </view>
+    <view class="card details">
+      <view class="detail-row"><text>所属冰箱</text><text>{{fridgeName}}</text></view>
+      <view class="detail-row"><text>存放位置</text><text>{{food.storage_area || '未填写'}}</text></view>
+      <view class="detail-row"><text>分类</text><text>{{food.categoryLabel}}</text></view>
+      <view class="detail-row"><text>数量</text><text>{{food.quantity ? food.quantity + (food.unit || '') : '未填写'}}</text></view>
+      <view class="detail-row"><text>放入日期</text><text>{{food.put_in_date}}</text></view>
+      <view class="detail-row"><text>保存天数</text><text>{{food.shelf_life_days}} 天</text></view>
+      <view class="detail-row"><text>预计过期</text><text>{{food.expire_date}}</text></view>
+      <view class="detail-row note-row"><text>备注</text><text>{{food.note || '无'}}</text></view>
+    </view>
+    <view wx:if="{{!food.isInactive}}" class="quick-actions">
+      <button class="secondary-btn" bindtap="consume">吃掉</button>
+      <button class="discard-btn" bindtap="discard">扔掉</button>
+      <button class="freeze-btn" bindtap="freeze">转冷冻</button>
+    </view>
+    <button class="danger-btn delete-record" bindtap="remove">删除记录</button>
+  </view>
+</view>

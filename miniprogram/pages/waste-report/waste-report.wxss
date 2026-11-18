@@ -1,0 +1,22 @@
+.period-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 32rpx; padding: 8rpx; background: #e8f0eb; border-radius: 18rpx; }
+.period-tab { padding: 18rpx; color: #66716a; text-align: center; border-radius: 14rpx; }
+.period-tab.active { color: #1f6c49; font-weight: 700; background: #fff; box-shadow: 0 4rpx 14rpx rgba(28, 67, 46, .08); }
+.report-card { text-align: center; }
+.total-number { display: inline; color: #1f6c49; font-size: 76rpx; font-weight: 750; }
+.total-unit { display: inline; margin-left: 10rpx; color: #66716a; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 30rpx; padding-top: 26rpx; border-top: 2rpx solid #edf2ee; }
+.metric { display: flex; flex-direction: column; gap: 8rpx; color: #66716a; font-size: 27rpx; }
+.metric-number { font-size: 38rpx; font-weight: 750; }
+.metric-number.consumed { color: #247a52; }
+.metric-number.discarded { color: #9f5729; }
+.metric-number.rate { color: #8a5700; }
+.ranking-card { padding-top: 14rpx; padding-bottom: 14rpx; }
+.ranking-row { display: flex; align-items: center; justify-content: space-between; min-height: 88rpx; border-bottom: 2rpx solid #edf2ee; }
+.ranking-row:last-child { border-bottom: 0; }
+.ranking-name { display: flex; align-items: center; gap: 22rpx; }
+.rank { display: inline-flex; align-items: center; justify-content: center; width: 48rpx; height: 48rpx; color: #247a52; font-size: 26rpx; font-weight: 700; background: #e6f4eb; border-radius: 50%; }
+.ranking-count { color: #765222; font-weight: 650; }
+.celebration { color: #247a52; }
+.report-note { padding: 0 12rpx 30rpx; color: #78847e; font-size: 25rpx; line-height: 1.65; }
+.error-state { line-height: 1.7; }
+.retry-btn { width: 240rpx; margin-top: 28rpx; }

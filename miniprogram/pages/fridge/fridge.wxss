@@ -1,0 +1,5 @@
+.add-button { margin-bottom: 28rpx; }
+.main-row { min-height: 90rpx; }
+.card-actions { margin-top: 22rpx; padding-top: 20rpx; border-top: 2rpx solid #edf2ee; }
+.arrow { color: #247a52; font-size: 46rpx; }
+.visibility-label { display: inline-block; margin-top: 10rpx; padding: 6rpx 14rpx; color: #326149; font-size: 24rpx; background: #e9f4ed; border-radius: 999rpx; }

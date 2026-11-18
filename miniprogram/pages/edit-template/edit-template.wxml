@@ -1,0 +1,8 @@
+<view class="page">
+  <view class="field"><text class="label required">食材名称</text><input class="input" value="{{name}}" maxlength="30" placeholder="例如：鸡蛋" data-field="name" bindinput="onInput" /></view>
+  <view class="field"><text class="label">分类</text><picker mode="selector" range="{{categoryNames}}" value="{{categoryIndex}}" bindchange="onCategoryChange"><view class="picker">{{categoryNames[categoryIndex]}}</view></picker></view>
+  <view class="field"><text class="label required">默认保存天数</text><input class="input" type="number" value="{{shelfLifeDays}}" placeholder="例如：14" data-field="shelfLifeDays" bindinput="onInput" /></view>
+  <view class="field"><text class="label">默认冰箱</text><picker mode="selector" range="{{fridgeNames}}" value="{{fridgeIndex}}" bindchange="onFridgeChange"><view class="picker">{{fridgeNames[fridgeIndex]}}</view></picker></view>
+  <view class="field"><text class="label">默认存放位置</text><input class="input" value="{{storageArea}}" maxlength="30" placeholder="例如：冷藏室上层" data-field="storageArea" bindinput="onInput" /></view>
+  <button class="primary-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submit">保存模板</button>
+</view>

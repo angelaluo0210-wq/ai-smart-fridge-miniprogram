@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="capture-hero">
+    <view class="capture-icon">{{mode === 'receipt' ? '🧾' : '📷'}}</view>
+    <view class="section-title">{{copy.title}}</view>
+    <view class="capture-description">{{copy.description}}</view>
+  </view>
+  <button class="primary-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="chooseImage">{{loading ? '正在处理…' : copy.button}}</button>
+  <view wx:if="{{loading}}" class="stage-card">
+    <view wx:for="{{stages}}" wx:key="key" class="stage-row {{item.status}}">
+      <text class="stage-icon">{{item.status === 'done' ? '✓' : (item.status === 'active' ? '●' : (item.status === 'error' ? '!' : '○'))}}</text>
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+  <view wx:if="{{error}}" class="state-card error-state">{{error}}</view>
+  <view wx:if="{{empty}}" class="state-card">没有识别到可导入的食材，你可以换一张清晰图片或手动添加。</view>
+  <button class="secondary-btn manual-btn" disabled="{{loading}}" bindtap="manualAdd">改为手动添加</button>
+  <view class="privacy-note">图片会临时上传到云存储供云函数处理；云函数和客户端都会尝试在处理后删除临时文件。识别结果不会自动写入库存。</view>
+</view>

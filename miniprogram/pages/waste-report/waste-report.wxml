@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="period-tabs">
+    <view class="period-tab {{period === 'week' ? 'active' : ''}}" data-period="week" bindtap="changePeriod">本周</view>
+    <view class="period-tab {{period === 'month' ? 'active' : ''}}" data-period="month" bindtap="changePeriod">本月</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">正在整理冰箱记录…</view>
+  <view wx:elif="{{loadFailed}}" class="empty error-state">
+    <view>数据加载失败，请稍后重试</view>
+    <button class="secondary-btn retry-btn" bindtap="retry">重新加载</button>
+  </view>
+  <block wx:else>
+    <view class="section">
+      <view class="section-title">{{periodTitle}}处理食材</view>
+      <view wx:if="{{stats.hasRecords}}" class="card report-card">
+        <view class="total-number">{{stats.total}}</view>
+        <view class="total-unit">件</view>
+        <view class="metric-grid">
+          <view class="metric"><text class="metric-number consumed">{{stats.consumed}}</text><text>吃掉</text></view>
+          <view class="metric"><text class="metric-number discarded">{{stats.discarded}}</text><text>扔掉</text></view>
+          <view class="metric"><text class="metric-number rate">{{stats.wasteRateText}}</text><text>浪费率</text></view>
+        </view>
+      </view>
+      <view wx:else class="empty">暂无处理记录</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">最常被浪费</view>
+      <view wx:if="{{stats.mostDiscarded.length}}" class="card ranking-card">
+        <view wx:for="{{stats.mostDiscarded}}" wx:key="name" class="ranking-row">
+          <view class="ranking-name"><text class="rank">{{index + 1}}</text><text>{{item.name}}</text></view>
+          <text class="ranking-count">{{item.count}} 次</text>
+        </view>
+      </view>
+      <view wx:else class="empty celebration">本期没有扔掉食材 🎉</view>
+    </view>
+
+    <view class="report-note">仅统计当前可访问冰箱中，明确标记为“已食用”或“已扔掉”且本期有操作时间的记录。</view>
+  </block>
+</view>

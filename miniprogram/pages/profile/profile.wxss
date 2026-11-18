@@ -1,0 +1,5 @@
+.privacy, .description { margin: 20rpx 0 26rpx; color: #66716a; font-size: 28rpx; line-height: 1.7; }
+.privacy { margin-bottom: 0; }
+.warning { margin-top: 18rpx; color: #8a5700; font-size: 26rpx; }
+.entry-card { min-height: 88rpx; }
+.entry-arrow { color: #247a52; font-size: 44rpx; }

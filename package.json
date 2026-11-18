@@ -1,0 +1,17 @@
+{
+  "name": "smart-fridge-miniprogram",
+  "version": "1.0.0",
+  "private": true,
+  "description": "智能冰箱管家微信小程序 MVP",
+  "scripts": {
+    "test": "node tests/date-status.test.js && node tests/phase2.test.js && node tests/phase35.test.js && node tests/household.test.js && node tests/reminder-household.test.js && node tests/waste-stats.test.js && node tests/smart-vision.test.js && node tests/image-upload.test.js && node tests/receipt.test.js && node tests/recipe.test.js && node tests/classic-recipes.test.js && node tests/food-safety.test.js && node tests/food-safety-llm.test.js && node tests/shelf-life.test.js && node tests/food-recommendation.test.js && node tests/model-routing.test.js && node tests/provider-url.test.js && node tests/provider-error.test.js && node tests/provider-stage.test.js && node tests/smart-client-diagnostics.test.js && node tests/food-safety-seed.test.js",
+    "food-safety:validate": "node scripts/import-food-safety-seed.js --validate-only",
+    "food-safety:credential": "node scripts/import-food-safety-seed.js --credential-diagnostic",
+    "food-safety:dry-run": "node scripts/import-food-safety-seed.js --dry-run",
+    "food-safety:import": "node scripts/import-food-safety-seed.js --apply",
+    "food-safety:verify": "node scripts/import-food-safety-seed.js --verify"
+  },
+  "devDependencies": {
+    "@cloudbase/node-sdk": "3.18.3"
+  }
+}

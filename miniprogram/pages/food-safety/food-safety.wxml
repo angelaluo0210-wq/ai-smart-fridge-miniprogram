@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="safety-intro">
+    <view class="section-title">食品安全助手</view>
+    <view>回答家庭保存、冷藏冷冻和常见食品安全问题，优先提供简洁、可操作的建议。</view>
+  </view>
+  <view class="field">
+    <textarea class="textarea question-input" maxlength="200" value="{{question}}" placeholder="例如：牛奶开封后还能放多久？" bindinput="onQuestionInput"/>
+  </view>
+  <button class="primary-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="submit">{{loading ? '正在生成建议…' : '查询'}}</button>
+  <view class="examples">
+    <text>你可以问：</text>
+    <view class="example" data-question="鸡蛋冷藏多久？" bindtap="useExample">鸡蛋冷藏多久？</view>
+    <view class="example" data-question="肉解冻以后还能重新冷冻吗？" bindtap="useExample">肉解冻后能重新冷冻吗？</view>
+  </view>
+  <view wx:if="{{error}}" class="card error-card">{{error}}</view>
+  <view wx:if="{{answer}}" class="answer-section">
+    <view class="section-title">回答</view>
+    <view class="card answer-card {{answer.fallback ? 'fallback' : ''}}">{{answer.answer}}</view>
+    <view wx:if="{{answer.sources && answer.sources.length}}" class="section">
+      <view class="section-title source-title">参考来源</view>
+      <view wx:for="{{answer.sources}}" wx:key="id" class="card source-card" data-url="{{item.url}}" bindtap="copySource">
+        <view class="name">{{item.title}}</view>
+        <view class="source-org">{{item.organization}}</view>
+        <view class="source-url">{{item.url}}</view>
+        <view class="copy-hint">点击复制来源链接</view>
+      </view>
+    </view>
+  </view>
+  <view class="disclaimer">AI 提供的是通用食品安全建议，具体请结合食品包装说明和实际储存条件判断。出现异味、胀包、霉变等异常或涉及高风险人群时，应采取更谨慎标准。</view>
+</view>

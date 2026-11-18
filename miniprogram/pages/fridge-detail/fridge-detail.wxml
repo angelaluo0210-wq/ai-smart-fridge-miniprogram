@@ -1,0 +1,26 @@
+<view class="page">
+  <view wx:if="{{fridge}}" class="fridge-header">
+    <view><view class="header-name">{{fridge.name}}</view><view class="muted">{{fridge.location || '未填写位置'}} · {{allFoods.length}} 件食材</view></view>
+    <button class="primary-btn small-btn" bindtap="addFood">＋ 添加</button>
+  </view>
+  <picker wx:if="{{fridge && allFoods.length}}" mode="selector" range="{{categoryNames}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+    <view class="category-filter">筛选：{{categoryNames[categoryIndex]}}</view>
+  </picker>
+  <view wx:if="{{loading}}" class="loading">正在加载…</view>
+  <view wx:elif="{{!allFoods.length}}" class="empty">这个冰箱还是空的<br/>点击“添加”放入第一件食材</view>
+  <view wx:elif="{{!foods.length}}" class="empty">当前分类没有食材</view>
+  <view wx:else>
+    <view wx:for="{{foods}}" wx:key="_id" class="card food-card {{item.computedStatus}}">
+      <view class="row" data-id="{{item._id}}" bindtap="openFood">
+        <view><view class="name">{{item.name}}</view><view class="food-meta">{{item.categoryLabel}} · {{item.storage_area || '未填写存放位置'}} · {{item.remainingText}}</view></view>
+        <text class="status status-{{item.computedStatus}}">{{item.statusText}}</text>
+      </view>
+      <view class="actions item-actions">
+        <button class="secondary-btn small-btn" data-id="{{item._id}}" data-name="{{item.name}}" catchtap="consumeFood">吃掉</button>
+        <button class="discard-btn small-btn" data-id="{{item._id}}" data-name="{{item.name}}" catchtap="discardFood">扔掉</button>
+        <button class="freeze-btn small-btn" data-id="{{item._id}}" catchtap="freezeFood">转冷冻</button>
+      </view>
+      <button class="delete-link" data-id="{{item._id}}" data-name="{{item.name}}" catchtap="deleteFood">删除记录</button>
+    </view>
+  </view>
+</view>

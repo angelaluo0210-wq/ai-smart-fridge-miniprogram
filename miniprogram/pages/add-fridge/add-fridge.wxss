@@ -1,0 +1,8 @@
+.visibility-list { overflow: hidden; background: #fff; border: 2rpx solid #dbe6df; border-radius: 16rpx; }
+.visibility-option, .member-option { display: flex; align-items: center; gap: 18rpx; padding: 22rpx 24rpx; border-bottom: 2rpx solid #edf2ee; }
+.visibility-option:last-child, .member-option:last-child { border-bottom: 0; }
+.option-title { font-size: 30rpx; font-weight: 600; }
+.option-description { margin-top: 6rpx; color: #718078; font-size: 24rpx; line-height: 1.5; }
+.visibility-note { padding: 24rpx; color: #66716a; font-size: 28rpx; line-height: 1.6; background: #eef6f1; border-radius: 16rpx; }
+.member-picker { padding: 24rpx; background: #fff; border-radius: 18rpx; }
+.member-option { padding-right: 0; padding-left: 0; }

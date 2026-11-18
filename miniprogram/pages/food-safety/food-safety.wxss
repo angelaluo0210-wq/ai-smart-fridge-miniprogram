@@ -1,0 +1,14 @@
+.safety-intro { margin: 16rpx 0 30rpx; padding: 28rpx; color: #315442; font-size: 28rpx; line-height: 1.7; background: #e8f4ec; border-radius: 20rpx; }
+.question-input { min-height: 190rpx; }
+.examples { margin: 28rpx 4rpx; color: #66716a; font-size: 27rpx; }
+.example { display: inline-block; margin: 12rpx 10rpx 0 0; padding: 10rpx 16rpx; color: #247a52; background: #e6f4eb; border-radius: 999rpx; }
+.error-card { color: #9f2929; background: #fff0f0; }
+.answer-section { margin-top: 34rpx; }
+.answer-card { line-height: 1.8; white-space: pre-wrap; }
+.answer-card.fallback { color: #765222; background: #fff8e8; }
+.source-title { font-size: 32rpx; }
+.source-card { padding: 24rpx; }
+.source-org { margin-top: 8rpx; color: #536159; font-size: 27rpx; }
+.source-url { margin-top: 10rpx; overflow-wrap: anywhere; color: #247a52; font-size: 24rpx; }
+.copy-hint { margin-top: 12rpx; color: #87918c; font-size: 23rpx; }
+.disclaimer { margin-top: 34rpx; padding: 0 10rpx 30rpx; color: #7b8780; font-size: 24rpx; line-height: 1.7; }
